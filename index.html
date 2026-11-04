@@ -1850,61 +1850,33 @@ body::before { display: none; }
 @media (prefers-reduced-motion: reduce) { .sh-m.is-open, .sh-m.is-open .sh-m__main > li { animation: none; } .sh__panel, .sh__link::after, .sh__group a { transition: none; } }
 
 /* =====================================================================
-   FOOTER v2
+   FOOTER v3 — one band: logo · nav · contact, then a single legal line
    ===================================================================== */
-.sf { position: relative; overflow: hidden; isolation: isolate; background: var(--ink); color: rgb(255 255 255 / .66); border-top: 3px solid var(--brass); }
-.sf__mark { position: absolute; z-index: -1; right: -6%; bottom: -18%; width: min(52rem, 70vw); height: auto; fill: var(--white); opacity: .035; pointer-events: none; }
-.sf__wrap { padding-top: clamp(var(--space-16), 7vw, var(--space-24)); }
+.sf { background: var(--ink); color: rgb(255 255 255 / .62); }
+.sf a { color: inherit; text-decoration: none; }
 .sf p { max-width: none; }
-.sf__top { display: grid; gap: var(--space-10); padding-bottom: clamp(var(--space-10), 5vw, var(--space-16)); border-bottom: 1px solid rgb(255 255 255 / .1); }
-@media (min-width: 64rem) { .sf__top { grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--space-16); } }
-.sf__brand img { display: block; height: 3.75rem; width: auto; margin-bottom: var(--space-6); }
-.sf__brand p { max-width: 42ch; font-size: var(--text-base); line-height: 1.6; }
-.sf__reach { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
-@media (min-width: 64rem) { .sf__reach { align-items: flex-end; text-align: right; } }
-.sf__label { font-size: .8125rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--brass); }
-.sf__big { font-family: var(--font-display); font-size: clamp(2.25rem, 2.6vw + 1.25rem, 3.75rem); font-weight: 500; line-height: 1.05; letter-spacing: -.02em;
-  color: var(--white); text-decoration: none; white-space: nowrap; transition: color .2s; }
-.sf__big:hover { color: var(--brass); }
-.sf__mail { color: rgb(255 255 255 / .84); text-decoration: underline; text-decoration-color: rgb(253 103 61 / .7); text-decoration-thickness: 1.5px; text-underline-offset: .35em;
-  overflow-wrap: anywhere; transition: color .2s; min-height: var(--touch-min); display: inline-flex; align-items: center; }
-.sf__mail:hover { color: var(--white); text-decoration-color: var(--brass); }
-
-.sf__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-10) var(--space-8); padding-block: clamp(var(--space-10), 5vw, var(--space-16)); }
-@media (min-width: 64rem) { .sf__grid { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.35fr); gap: var(--space-12); } }
-@media (max-width: 39.99rem) { .sf__col--svc, .sf__col:last-child { grid-column: 1 / -1; } }
-.sf h2 { max-width: none !important; margin: 0 0 var(--space-4); font-family: var(--font); font-size: .8125rem !important; font-weight: 500 !important; letter-spacing: .14em; text-transform: uppercase; color: rgb(255 255 255 / .5); }
-.sf__col p { font-size: var(--text-base); line-height: 1.6; color: rgb(255 255 255 / .72); }
-.sf__col p + p { margin-top: var(--space-3); }
-.sf__col a:not(.btn) { position: relative; display: inline-flex; align-items: center; min-height: 2.5rem; color: rgb(255 255 255 / .86); text-decoration: none; font-size: var(--text-base); line-height: 1.35; transition: color .2s, translate .25s var(--p-ease); }
-@media (pointer: coarse) { .sf__col a:not(.btn) { min-height: var(--touch-min); } }
-.sf__col a:not(.btn):hover { color: var(--white); translate: 4px 0; }
-.sf__col a:not(.btn)::before { content: ""; position: absolute; left: -.875rem; top: 50%; width: .375rem; height: .375rem; background: var(--brass); translate: 0 -50%; opacity: 0; transition: opacity .2s; }
-.sf__col a:not(.btn):hover::before { opacity: 1; }
-.sf__cred { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-4); align-items: center; padding: var(--space-5); border: 1px solid rgb(255 255 255 / .12); background: rgb(255 255 255 / .03); }
-.sf__cred img { width: 3rem; height: 3rem; }
-.sf__cred p { display: flex; flex-direction: column; line-height: 1.4; }
-.sf__cred strong { font-family: var(--font-display); font-weight: 500; color: var(--white); font-size: var(--text-base); }
-.sf__cred span { font-size: var(--text-sm); color: rgb(255 255 255 / .6); }
-.sf__cta { margin-top: var(--space-5); width: 100%; border-radius: 0 !important; }
-
+.sf__main { display: grid; gap: var(--space-8); align-items: center; padding-block: clamp(var(--space-12), 5vw, var(--space-16)); }
+@media (min-width: 64rem) { .sf__main { grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--space-12); } }
+.sf__logo { display: inline-flex; justify-self: start; }
+.sf__logo img { display: block; height: 3rem; width: auto; }
+.sf__nav ul { display: flex; flex-wrap: wrap; gap: 0 var(--space-8); }
+@media (min-width: 64rem) { .sf__nav ul { justify-content: center; } }
+.sf__nav a { display: inline-flex; align-items: center; min-height: var(--touch-min); font-family: var(--font-display); font-size: 1.0625rem; font-weight: 500; color: rgb(255 255 255 / .86); transition: color .2s; }
+.sf__nav a:hover { color: var(--brass); }
+.sf__contact { display: flex; flex-direction: column; align-items: flex-start; }
+@media (min-width: 64rem) { .sf__contact { align-items: flex-end; text-align: right; } }
+.sf__tel, .sf__mail { display: inline-flex; align-items: center; min-height: var(--touch-min); transition: color .2s; }
+.sf__tel { font-family: var(--font-display); font-size: 1.375rem; font-weight: 600; color: var(--white) !important; min-height: 2.25rem; }
+.sf__mail { font-size: var(--text-sm); overflow-wrap: anywhere; min-height: 2rem; }
+.sf__tel:hover, .sf__mail:hover { color: var(--brass) !important; }
 .sf__bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4) var(--space-8);
   padding-block: var(--space-6) calc(var(--space-6) + env(safe-area-inset-bottom, 0px)); border-top: 1px solid rgb(255 255 255 / .1); }
-.sf__legal { font-size: var(--text-sm); color: rgb(255 255 255 / .5); }
-.sf__bottom-r { display: flex; align-items: center; gap: var(--space-6); }
+.sf__bottom p { font-size: var(--text-sm); line-height: 1.6; color: rgb(255 255 255 / .5); }
 .sf__social { display: flex; gap: var(--space-2); }
-.sf__social a, .sf__up span { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid rgb(255 255 255 / .18); color: var(--white); transition: background .25s, border-color .25s, color .25s; }
+.sf__social a { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid rgb(255 255 255 / .18); color: var(--white); transition: background .25s, border-color .25s, color .25s; }
+.sf__social a:hover { background: var(--brass); border-color: var(--brass); color: var(--ink); }
 .sf svg { display: block; width: 1.125rem; height: 1.125rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .sf svg .f { fill: currentColor; stroke: none; }
-.sf__social a:hover { background: var(--brass); border-color: var(--brass); color: var(--ink); }
-.sf__up { display: inline-flex; align-items: center; gap: var(--space-3); min-height: var(--touch-min); color: rgb(255 255 255 / .8); text-decoration: none; font-family: var(--font-display); font-weight: 500; font-size: var(--text-sm); }
-.sf__up:hover { color: var(--white); }
-.sf__up:hover span { background: var(--white); border-color: var(--white); color: var(--ink); }
-.sf__up svg { transition: transform .3s var(--p-ease); }
-.sf__up:hover svg { transform: translateY(-3px); }
-@media (max-width: 39.99rem) { .sf__bottom { flex-direction: column-reverse; align-items: flex-start; } .sf__bottom-r { width: 100%; justify-content: space-between; } }
-@media (prefers-reduced-motion: reduce) { .sf__col a, .sf__up svg { transition: none; } }
-
 
 /* =====================================================================
    v3 — type: Archivo body (the brand presentation face) + Barlow titles
@@ -1990,8 +1962,8 @@ main h2 .t-l { color: var(--brand-mid); }
 .fq2 { display: grid; gap: var(--space-10); }
 @media (min-width: 64rem) {
   .fq2 { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: var(--space-16); align-items: start; }
-  .fq2__head { position: sticky; top: calc(var(--sh-bar) + var(--space-10)); }
 }
+.fq2__head { position: static; }
 .fq2__head h2 { margin-bottom: var(--space-5) !important; }
 .fq2__head p:not(.eyebrow) { color: var(--grey-600); max-width: 38ch; }
 .fq2__more { margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--grey-200); }
@@ -2404,7 +2376,7 @@ main h2 .t-l { color: var(--brand-mid); }
 <section class="band band--tint p-faq" aria-labelledby="faq-title">
   <div class="wrap fq2">
     <div class="fq2__head">
-      <h2 id="faq-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="p-tl t-l">Questions Before You</span> <span class="p-tl t-b">Remodel or Build</span></span></h2>
+      <h2 id="faq-title"><span class="p-h2i"><span class="p-tl t-l">Questions Before You</span> <span class="p-tl t-b">Remodel or Build</span></span></h2>
       <p>Straight answers to what homeowners ask most before starting a remodel, addition, ADU, or new home.</p>
       <p class="fq2__more">Still have a question? <a href="tel:+17274044889">Call 727-404-4889</a></p>
     </div>
@@ -2476,67 +2448,29 @@ main h2 .t-l { color: var(--brand-mid); }
 </main>
 
 <footer class="sf">
-  <svg class="sf__mark" viewBox="-8 -129.5 136.85 137.5" aria-hidden="true"><path d="M69.78 -39.56 L92.01 -67.35 L60.43 -121.49 L28.85 -67.35 L48.09 -43.30 L57.44 -54.99 L46.51 -68.65 L60.43 -92.51 L74.35 -68.65 L36.21 -20.97 L13.36 -72.94 L0.00 -67.06 L29.49 0.00 L38.13 0.00 Z M120.86 -67.06 L107.50 -72.94 L84.65 -20.97 L72.77 -35.82 L63.42 -24.14 L82.73 0.00 L91.38 0.00 Z"/></svg>
-  <div class="wrap sf__wrap">
-    <div class="sf__top">
-      <div class="sf__brand">
-        <img src="assets/logo/crown-point-option-1-badge-dark.svg" alt="Crown Point Construction" width="983" height="266" loading="lazy">
-        <p>Owner-led home remodeling, custom home building, additions, ADUs, and general contracting in St. Petersburg and throughout Pinellas County.</p>
-      </div>
-      <div class="sf__reach">
-        <p class="sf__label">Talk directly with Brian</p>
-        <a class="sf__big" href="tel:+17274044889">727-404-4889</a>
+  <div class="wrap">
+    <div class="sf__main">
+      <a class="sf__logo" href="#top"><img src="assets/logo/crown-point-option-1-badge-dark.svg" alt="Crown Point Construction" width="983" height="266" loading="lazy"></a>
+      <nav class="sf__nav" aria-label="Footer">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Our Work</a></li>
+          <li><a href="#who">About</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="sf__contact">
+        <a class="sf__tel" href="tel:+17274044889">727-404-4889</a>
         <a class="sf__mail" href="mailto:info@crownpointconstruction.com">info@crownpointconstruction.com</a>
       </div>
     </div>
-
-    <div class="sf__grid">
-      <nav class="sf__col sf__col--svc" aria-labelledby="sf-svc">
-        <h2 id="sf-svc">Residential Services</h2>
-        <ul>
-          <li><a href="#svc-whole">Whole-Home Remodeling</a></li>
-          <li><a href="#svc-bungalow">Bungalow &amp; Small Home Remodeling</a></li>
-          <li><a href="#svc-custom">Custom Home Building</a></li>
-          <li><a href="#svc-additions">Home Additions</a></li>
-          <li><a href="#svc-adu">ADUs, Guest Houses &amp; In-Law Suites</a></li>
-          <li><a href="#svc-kitchen">Kitchen Remodeling</a></li>
-          <li><a href="#svc-bath">Bathroom Remodeling</a></li>
-        </ul>
-      </nav>
-      <nav class="sf__col" aria-labelledby="sf-co">
-        <h2 id="sf-co">Company</h2>
-        <ul>
-          <li><a href="#who">About Crown Point</a></li>
-          <li><a href="#work">Our Work</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#commercial">Commercial Projects</a></li>
-        </ul>
-      </nav>
-      <div class="sf__col">
-        <h2>Service Area</h2>
-        <p>St. Petersburg, Florida</p>
-        <p>Projects throughout St. Petersburg, Clearwater, and Pinellas County.</p>
-      </div>
-      <div class="sf__col">
-        <h2>Credentials</h2>
-        <div class="sf__cred">
-          <img src="assets/logo/crown-point-symbol-badge.svg" alt="" width="48" height="48" loading="lazy">
-          <p><strong>Florida Certified General Contractor</strong><span>License #CGC1538561</span></p>
-        </div>
-        <a class="btn btn--solid sf__cta" href="#contact">Request a Free Consultation</a>
-      </div>
-    </div>
-
     <div class="sf__bottom">
-      <p class="sf__legal">© 2026 Crown Point Construction. All rights reserved.</p>
-      <div class="sf__bottom-r">
-        <ul class="sf__social" aria-label="Social media">
-          <li><a href="#" aria-label="Crown Point on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 8.25V6.9c0-.75.5-1.15 1.2-1.15h1.8V2.5h-2.6c-2.95 0-4.15 1.95-4.15 4.25v1.5H8.5v3.3h2.25v9.95h3.75v-9.95h2.6l.45-3.3z" class="f"/></svg></a></li>
-          <li><a href="#" aria-label="Crown Point on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.9"/><circle cx="17.1" cy="6.9" r=".6" class="f"/></svg></a></li>
-        </ul>
-        <a class="sf__up" href="#top">Back to top<span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span></a>
-      </div>
+      <p>© 2026 Crown Point Construction <span aria-hidden="true">·</span> Florida Certified General Contractor <span aria-hidden="true">·</span> License #CGC1538561</p>
+      <ul class="sf__social" aria-label="Social media">
+        <li><a href="#" aria-label="Crown Point on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M14.5 8.25V6.9c0-.75.5-1.15 1.2-1.15h1.8V2.5h-2.6c-2.95 0-4.15 1.95-4.15 4.25v1.5H8.5v3.3h2.25v9.95h3.75v-9.95h2.6l.45-3.3z"/></svg></a></li>
+        <li><a href="#" aria-label="Crown Point on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.9"/><circle class="f" cx="17.1" cy="6.9" r=".6"/></svg></a></li>
+      </ul>
     </div>
   </div>
 </footer>
