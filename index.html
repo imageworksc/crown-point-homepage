@@ -19,9 +19,7 @@
 <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.setAttribute('data-anim','on');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..700;1,400&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
    Structural design system
@@ -1907,6 +1905,124 @@ body::before { display: none; }
 @media (max-width: 39.99rem) { .sf__bottom { flex-direction: column-reverse; align-items: flex-start; } .sf__bottom-r { width: 100%; justify-content: space-between; } }
 @media (prefers-reduced-motion: reduce) { .sf__col a, .sf__up svg { transition: none; } }
 
+
+/* =====================================================================
+   v3 — type: Archivo body (the brand presentation face) + Barlow titles
+   with weight contrast; square geometry to match the badge; section
+   redesigns
+   ===================================================================== */
+:root { --font: 'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; --radius: 0px; }
+body { font-family: var(--font); letter-spacing: -.002em; }
+
+/* title weight play: bold = the point, light = the lead-in */
+.t-b { font-weight: 700 !important; }
+.t-m { font-weight: 400 !important; }
+.t-l { font-weight: 300 !important; }
+main h2 .t-l { color: var(--brand-mid); }
+.band--dark h2 .t-l, .p-who h2 .t-l, .y-cta h2 .t-l { color: rgb(255 255 255 / .78); }
+.t-row { display: block; }
+
+/* eyebrow over every section title */
+.eyebrow { display: inline-flex !important; align-items: center; gap: .75rem; margin: 0 0 var(--space-5) !important; max-width: none;
+  font-family: var(--font) !important; font-size: .8125rem !important; font-weight: 600 !important; letter-spacing: .16em; text-transform: uppercase; line-height: 1.2;
+  color: var(--grey-600) !important; }
+.eyebrow::before { content: ""; width: .625rem; height: .625rem; background: var(--brass); flex: none; }
+.band--dark .eyebrow, .p-who .eyebrow, .p-com .eyebrow, .y-cta .eyebrow { color: rgb(255 255 255 / .6) !important; }
+.p-who__copy .eyebrow, .p-why__copy .eyebrow, .p-svc__head .eyebrow { margin-bottom: 0 !important; }
+
+/* hero: headline across, then lead | actions on one rule */
+.hz h1 .t-l { color: var(--brand-mid); }
+@media (min-width: 64rem) {
+  .hz__row { grid-template-columns: minmax(0, 1fr) auto !important; max-width: none !important; align-items: end !important; gap: var(--space-16) !important;
+    margin-top: var(--space-10) !important; padding-top: var(--space-8); border-top: 1px solid var(--grey-200); }
+  .hz__lead { max-width: 54ch; }
+  .hz__act { flex-wrap: nowrap !important; }
+}
+
+/* services intro: stepped three-weight title */
+#svc-title { font-size: clamp(2.5rem, 2.6vw + 1.5rem, 4.25rem) !important; line-height: 1.02 !important; letter-spacing: -.025em !important; }
+#svc-title .t-row:nth-child(2) { color: var(--brand-mid); }
+#svc-title .t-row:nth-child(3) { color: var(--brass-ink); }
+
+/* why: numbered points */
+.p-why .p-points { counter-reset: pt; margin-top: var(--space-16); gap: 0 !important; border-top: 1px solid rgb(255 255 255 / .14); }
+@media (min-width: 40rem) { .p-why .p-points { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 75rem) { .p-why .p-points { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.p-why .p-points > li { counter-increment: pt; padding: var(--space-8) 0 !important; }
+.p-why .p-points > li::before { content: counter(pt, decimal-leading-zero); display: block; margin-bottom: var(--space-6);
+  font-family: var(--font-display); font-weight: 300; font-size: 2.75rem; line-height: 1; letter-spacing: -.02em; color: var(--brass); }
+.p-why .p-points h3 { font-size: 1.25rem !important; margin-bottom: var(--space-3); }
+.p-why .p-points p { font-size: 1rem !important; line-height: 1.6; }
+@media (max-width: 39.99rem) { .p-why .p-points > li + li { border-top: 1px solid rgb(255 255 255 / .14) !important; } }
+@media (min-width: 40rem) {
+  .p-why .p-points > li { padding: var(--space-8) var(--space-8) !important; }
+  .p-why .p-points > li:nth-child(odd) { padding-left: 0 !important; }
+  .p-why .p-points > li:nth-child(even) { border-left: 1px solid rgb(255 255 255 / .14); }
+}
+@media (min-width: 40rem) and (max-width: 74.99rem) { .p-why .p-points > li:nth-child(n+3) { border-top: 1px solid rgb(255 255 255 / .14) !important; } }
+@media (min-width: 75rem) {
+  .p-why .p-points > li { padding: var(--space-10) var(--space-8) var(--space-4) !important; }
+  .p-why .p-points > li:nth-child(odd) { padding-left: var(--space-8) !important; }
+  .p-why .p-points > li + li { border-left: 1px solid rgb(255 255 255 / .14); }
+  .p-why .p-points > li:first-child { padding-left: 0 !important; }
+  .p-why .p-points > li:last-child { padding-right: 0 !important; }
+}
+
+/* gallery captions */
+.p-slide__cap { margin-top: var(--space-5); padding-top: 0 !important; border-top: 0 !important; align-items: baseline !important; }
+.p-slide__cap h3 { font-size: var(--p-h4) !important; font-weight: 600 !important; }
+.p-slide__loc { margin-top: .25rem !important; font-size: var(--text-sm) !important; color: var(--grey-600); }
+.p-slide__n { font-family: var(--font-display); font-weight: 300; font-size: 1.75rem; line-height: 1; color: var(--brass-ink); }
+
+/* reviews */
+.rv { display: grid; gap: var(--space-6); }
+@media (min-width: 60rem) { .rv { grid-template-columns: 1fr 1fr; } }
+.rv__card { display: flex; flex-direction: column; gap: var(--space-6); padding: clamp(var(--space-8), 3.5vw, var(--space-12)); background: var(--white);
+  border-top: 3px solid var(--brass); box-shadow: 0 24px 48px -28px rgb(11 11 11 / .18); }
+.rv__q { width: 2.5rem; height: auto; fill: var(--brass); }
+.rv blockquote { margin: 0; font-family: var(--font-display); font-size: clamp(1.25rem, .6vw + 1.05rem, 1.5rem); font-weight: 400; line-height: 1.45; letter-spacing: -.005em; color: var(--ink); }
+.rv__who { display: flex; align-items: center; gap: var(--space-4); margin-top: auto; padding-top: var(--space-6); border-top: 1px solid var(--grey-200); }
+.rv__av { display: grid; place-items: center; flex: none; width: 3rem; height: 3rem; background: var(--ink); color: var(--white);
+  font-family: var(--font-display); font-size: 1rem; font-weight: 600; letter-spacing: .04em; }
+.rv__id { display: flex; flex-direction: column; line-height: 1.3; }
+.rv__name { font-family: var(--font-display); font-size: 1.125rem; font-weight: 600; color: var(--ink); text-decoration: none; }
+.rv__name:hover { color: var(--brass-ink); text-decoration: underline; text-underline-offset: .25em; }
+.rv__src { font-size: var(--text-sm); color: var(--grey-600); }
+
+/* commercial */
+.p-com__panel { background: var(--ink) !important; border-left: 4px solid var(--brass); padding: clamp(var(--space-8), 4vw, var(--space-16)) !important; }
+.p-com h2 { font-size: clamp(1.75rem, 1.2vw + 1.2rem, 2.5rem) !important; margin-bottom: var(--space-4) !important; }
+.p-com p:not(.eyebrow) { color: rgb(255 255 255 / .72); max-width: 62ch; }
+
+/* faq: title column + list */
+.fq2 { display: grid; gap: var(--space-10); }
+@media (min-width: 64rem) {
+  .fq2 { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: var(--space-16); align-items: start; }
+  .fq2__head { position: sticky; top: calc(var(--sh-bar) + var(--space-10)); }
+}
+.fq2__head h2 { margin-bottom: var(--space-5) !important; }
+.fq2__head p:not(.eyebrow) { color: var(--grey-600); max-width: 38ch; }
+.fq2__more { margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--grey-200); }
+.fq2__more a { color: var(--ink); font-weight: 600; white-space: nowrap; text-decoration: underline; text-decoration-color: var(--brass); text-decoration-thickness: 2px; text-underline-offset: .3em; }
+.fq2__more a:hover { color: var(--brass-ink); }
+.p-faq .p-ac { max-width: none !important; }
+.p-ac__q > span:first-child { font-weight: 500; }
+.p-ac__item[open] .p-ac__q > span:first-child { font-weight: 600; }
+
+/* contact: intro + details | form */
+.y-cta__list { margin-top: var(--space-4); border-top: 1px solid rgb(255 255 255 / .12); }
+.y-cta__list li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 3.5rem; border-bottom: 1px solid rgb(255 255 255 / .12); color: var(--white); }
+.y-cta__list span { font-size: .8125rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgb(255 255 255 / .5); }
+.y-cta__list a { color: var(--white); text-decoration: none; overflow-wrap: anywhere; text-align: right; transition: color .2s; }
+.y-cta__list a:hover { color: var(--brass); }
+@media (min-width: 64rem) {
+  .y-cta__inner { max-width: none !important; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-16); align-items: start; }
+  .y-cta__intro { padding-bottom: 0 !important; border-bottom: 0 !important; }
+  .y-form { padding: clamp(var(--space-8), 3vw, var(--space-12)) !important; background: rgb(255 255 255 / .035); border: 1px solid rgb(255 255 255 / .1); }
+  .y-form__grid { grid-template-columns: 1fr 1fr !important; }
+  .y-form__grid > .y-f:first-child { grid-column: 1 / -1; }
+}
+
 </style>
 </head>
 <body>
@@ -2016,7 +2132,7 @@ body::before { display: none; }
 <main id="main">
 <section class="hz" id="top" aria-labelledby="hero-title" style="--hz-photo:url('assets/img/hero-sunroom.jpg')">
   <div class="wrap">
-    <h1 id="hero-title" aria-label="Your Home Is Personal. Your Builder Should Be, Too."><span aria-hidden="true"><span class="p-hl"><span class="p-w"><span style="--d:120ms">Your</span></span> <span class="p-w"><span style="--d:190ms">Home</span></span> <span class="p-w"><span style="--d:260ms">Is</span></span> <span class="p-w"><span style="--d:330ms">Personal.</span></span></span> <span class="p-hl"><span class="p-w"><span style="--d:400ms">Your</span></span> <span class="p-w"><span style="--d:470ms">Builder</span></span> <span class="p-w"><span style="--d:540ms">Should</span></span> <span class="p-w"><span style="--d:610ms">Be,</span></span> <span class="p-w"><span style="--d:680ms">Too.</span></span></span></span></h1>
+    <h1 id="hero-title" aria-label="Your Home Is Personal. Your Builder Should Be, Too."><span aria-hidden="true"><span class="p-hl t-b"><span class="p-w"><span style="--d:120ms">Your</span></span> <span class="p-w"><span style="--d:190ms">Home</span></span> <span class="p-w"><span style="--d:260ms">Is</span></span> <span class="p-w"><span style="--d:330ms">Personal.</span></span></span> <span class="p-hl t-l"><span class="p-w"><span style="--d:400ms">Your</span></span> <span class="p-w"><span style="--d:470ms">Builder</span></span> <span class="p-w"><span style="--d:540ms">Should</span></span> <span class="p-w"><span style="--d:610ms">Be,</span></span> <span class="p-w"><span style="--d:680ms">Too.</span></span></span></span></h1>
     <div class="hz__row">
       <p class="hz__lead p-seq" style="--d:700ms">Whole-home remodeling, custom home building, additions, ADUs, kitchens, bathrooms, and general contracting in St. Petersburg and throughout Pinellas County — managed directly by the owner from planning through construction.</p>
       <div class="hz__side p-seq" style="--d:820ms">
@@ -2045,7 +2161,8 @@ body::before { display: none; }
 <section class="band p-who" id="who" aria-labelledby="who-title">
   <div class="wrap p-who__grid">
     <div class="p-who__copy" data-reveal>
-      <h2 id="who-title" class="p-h2r" data-reveal><span class="p-h2i">Remodeling, Building &amp; Additions. Managed From Start to Finish.</span></h2>
+      <p class="eyebrow">About Crown Point</p>
+      <h2 id="who-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="t-b">Remodeling, Building &amp; Additions.</span> <span class="t-l">Managed From Start to Finish.</span></span></h2>
       <p>Crown Point Construction is an owner-led general contractor, home remodeler, and custom home builder in St. Petersburg, Florida, serving homeowners throughout Pinellas County.</p>
       <p>We specialize in whole-home remodeling, custom homes, additions, accessory dwelling units (ADUs), kitchens, bathrooms, and renovations of older St. Pete homes.</p>
     </div>
@@ -2059,7 +2176,8 @@ body::before { display: none; }
 <section class="band band--tint p-svc" id="services" aria-labelledby="svc-title">
   <div class="wrap p-intro p-fix">
     <div class="p-svc__head" data-reveal>
-      <h2 id="svc-title" class="p-h2r"><span class="p-h2i">Remodel. Add Space. Build New.</span></h2>
+      <p class="eyebrow">What We Do</p>
+      <h2 id="svc-title" class="p-h2r"><span class="p-h2i"><span class="t-row t-b">Remodel.</span> <span class="t-row t-m">Add Space.</span> <span class="t-row t-l">Build New.</span></span></h2>
       <p class="lead">Whether your home needs a better layout, more room, a major update, or a fresh start, Crown Point helps turn the idea into a finished project with planning and construction working together.</p>
       <a class="p-jump" href="#service-list">View Our Services<span class="p-jump__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span></a>
     </div>
@@ -2155,7 +2273,8 @@ body::before { display: none; }
   <div class="wrap">
     <div class="p-why__grid">
       <div class="p-why__copy" data-reveal>
-        <h2 id="why-title" class="p-h2r" data-reveal><span class="p-h2i">Work Directly With the Person Responsible for Your Project.</span></h2>
+        <p class="eyebrow">Why Crown Point</p>
+        <h2 id="why-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="t-l">Work Directly With</span> <span class="t-b">the Person Responsible for Your Project.</span></span></h2>
         <p class="p-why__intro">A major remodeling or construction project involves a lot of decisions. You shouldn’t have to wonder who is responsible for yours.</p>
         <p>Brian stays directly involved in the work, decisions, and communication throughout the project.</p>
         <p>Before establishing Crown Point in Florida, Brian spent 18 years working as a general contractor in Pennsylvania, bringing that experience to a smaller, owner-led construction company in St. Petersburg.</p>
@@ -2175,7 +2294,7 @@ body::before { display: none; }
 <section class="band p-work" id="work" aria-labelledby="work-title">
   <div class="wrap">
     <div class="p-work__head" data-reveal>
-      <div><h2 id="work-title" class="p-h2r" data-reveal><span class="p-h2i">See What We’ve Built.</span></h2><p class="p-work__claim">Real projects tell the story better than promises.</p></div>
+      <div><p class="eyebrow">Our Work</p><h2 id="work-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="t-l">See What</span> <span class="t-b">We’ve Built.</span></span></h2><p class="p-work__claim">Real projects tell the story better than promises.</p></div>
       <p>Explore home remodeling, additions, ADUs, kitchens, bathrooms, and residential construction projects completed throughout St. Petersburg, Clearwater, and Pinellas County.</p>
     </div>
   </div>
@@ -2183,15 +2302,19 @@ body::before { display: none; }
     <div class="p-gal__track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Featured projects">
       <article class="p-slide" aria-roledescription="slide" aria-label="1 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Outdoor living space remodel in Tarpon Springs, Florida: covered patio with a pool"><div class="p-media__fill" style="background:url(assets/img/project-tarpon-springs-patio.jpg) center 55% / cover no-repeat"></div></div>
+        <div class="p-slide__cap"><div><h3>Outdoor Living Space</h3><p class="p-slide__loc">Tarpon Springs, FL</p></div><span class="p-slide__n" aria-hidden="true">01</span></div>
       </article>
       <article class="p-slide" aria-roledescription="slide" aria-label="2 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Kitchen remodel in Westchase, Florida"><div class="p-media__fill" style="background:url(assets/img/project-westchase-kitchen.jpg) center 40% / cover no-repeat"></div></div>
+        <div class="p-slide__cap"><div><h3>Kitchen Remodel</h3><p class="p-slide__loc">Westchase, FL</p></div><span class="p-slide__n" aria-hidden="true">02</span></div>
       </article>
       <article class="p-slide" aria-roledescription="slide" aria-label="3 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Bathroom addition in Clearwater, Florida, with a navy vanity and gold fixtures"><div class="p-media__fill" style="background:url(assets/img/project-clearwater-bath.jpg) center 55% / cover no-repeat"></div></div>
+        <div class="p-slide__cap"><div><h3>Bathroom Addition</h3><p class="p-slide__loc">Clearwater, FL</p></div><span class="p-slide__n" aria-hidden="true">03</span></div>
       </article>
       <article class="p-slide" aria-roledescription="slide" aria-label="4 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Kitchen sink upgrade with a quartz countertop in St. Petersburg, Florida"><div class="p-media__fill" style="background:url(assets/img/project-st-pete-kitchen-sink.jpg) center 50% / cover no-repeat"></div></div>
+        <div class="p-slide__cap"><div><h3>Kitchen Upgrade</h3><p class="p-slide__loc">St. Petersburg, FL</p></div><span class="p-slide__n" aria-hidden="true">04</span></div>
       </article>
     </div>
   </div>
@@ -2211,26 +2334,31 @@ body::before { display: none; }
 <section class="band band--tint p-rev" id="reviews" aria-labelledby="rev-title">
   <div class="wrap">
     <div class="p-rev__head" data-reveal>
-      <div class="stack stack--tight"><h2 id="rev-title" class="p-h2r" data-reveal><span class="p-h2i">What Homeowners Say</span></h2></div>
+      <div><p class="eyebrow">Reviews</p><h2 id="rev-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="t-l">What</span> <span class="t-b">Homeowners Say</span></span></h2></div>
       <a class="p-link" href="#">Read Our Google Reviews</a>
     </div>
-    <ul class="p-quotes">
-      <li data-reveal><blockquote>“They design and build amazing projects and would highly recommend to anyone who’s looking for a small remodel to building a brand new custom home!”</blockquote><p class="p-quotes__who"><a class="p-quotes__name" href="https://www.google.com/maps/contrib/101057481305116436076/reviews?hl=en-US" target="_blank" rel="noopener">Zach Morrison</a><span>Google review</span></p></li>
-      <li data-reveal style="--reveal-delay:100ms"><blockquote>“My husband and I had such an amazing experience with Crown Point. Started off with a great consultation with Graham. He was able to help guide us on what would work best with our space.”</blockquote><p class="p-quotes__who"><a class="p-quotes__name" href="https://www.google.com/maps/contrib/115697958831710552102/reviews?hl=en-US" target="_blank" rel="noopener">Sarah Lewis</a><span>Google review</span></p></li>
+    <ul class="rv">
+      <li class="rv__card" data-reveal><svg class="rv__q" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V14C0 6 4.5 1.2 12 0l1.5 3.5C8.8 5 6.6 8 6.4 12H12v12zm18 0V14c0-8 4.5-12.8 12-14l1.5 3.5C26.8 5 24.6 8 24.4 12H30v12z"/></svg><blockquote>“They design and build amazing projects and would highly recommend to anyone who’s looking for a small remodel to building a brand new custom home!”</blockquote><div class="rv__who"><span class="rv__av" aria-hidden="true">ZM</span><span class="rv__id"><a class="rv__name" href="https://www.google.com/maps/contrib/101057481305116436076/reviews?hl=en-US" target="_blank" rel="noopener">Zach Morrison</a><span class="rv__src">Google review</span></span></div></li>
+      <li class="rv__card" data-reveal style="--reveal-delay:100ms"><svg class="rv__q" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V14C0 6 4.5 1.2 12 0l1.5 3.5C8.8 5 6.6 8 6.4 12H12v12zm18 0V14c0-8 4.5-12.8 12-14l1.5 3.5C26.8 5 24.6 8 24.4 12H30v12z"/></svg><blockquote>“My husband and I had such an amazing experience with Crown Point. Started off with a great consultation with Graham. He was able to help guide us on what would work best with our space.”</blockquote><div class="rv__who"><span class="rv__av" aria-hidden="true">SL</span><span class="rv__id"><a class="rv__name" href="https://www.google.com/maps/contrib/115697958831710552102/reviews?hl=en-US" target="_blank" rel="noopener">Sarah Lewis</a><span class="rv__src">Google review</span></span></div></li>
     </ul>
   </div>
 </section>
 
 <section class="band band--snug p-com" id="commercial" aria-labelledby="com-title">
   <div class="wrap"><div class="p-com__panel" data-reveal>
-    <div><h2 id="com-title">Have a Commercial Project?</h2><p>Residential construction is Crown Point’s primary focus, but we also consider select commercial construction and renovation projects in St. Petersburg and Pinellas County.</p></div>
+    <div><p class="eyebrow">Commercial</p><h2 id="com-title">Have a Commercial Project?</h2><p>Residential construction is Crown Point’s primary focus, but we also consider select commercial construction and renovation projects in St. Petersburg and Pinellas County.</p></div>
     <a class="btn btn--quiet" href="#contact">Discuss a Commercial Project</a>
   </div></div>
 </section>
 
 <section class="band band--tint p-faq" aria-labelledby="faq-title">
-  <div class="wrap">
-    <h2 id="faq-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="p-tl">Questions Before You</span> <span class="p-tl">Remodel or Build</span></span></h2>
+  <div class="wrap fq2">
+    <div class="fq2__head">
+      <p class="eyebrow">FAQ</p>
+      <h2 id="faq-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="p-tl t-l">Questions Before You</span> <span class="p-tl t-b">Remodel or Build</span></span></h2>
+      <p>Straight answers to what homeowners ask most before starting a remodel, addition, ADU, or new home.</p>
+      <p class="fq2__more">Still have a question? <a href="tel:+17274044889">Call 727-404-4889</a></p>
+    </div>
     <div class="p-ac" data-reveal>
       <details class="p-ac__item">
         <summary class="p-ac__q"><span>Do I need architectural plans before contacting Crown Point?</span><span class="p-ac__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></svg></span></summary>
@@ -2268,9 +2396,11 @@ body::before { display: none; }
   <div class="wrap">
     <div class="y-cta__inner">
       <div class="y-cta__intro" data-reveal>
-        <h2 id="cta-title" class="p-h2r"><span class="p-h2i"><span class="p-tl">Your Project Doesn’t Have to Be</span> <span class="p-tl">Figured Out Yet.</span></span></h2>
+        <p class="eyebrow">Get Started</p>
+        <h2 id="cta-title" class="p-h2r"><span class="p-h2i"><span class="p-tl t-l">Your Project Doesn’t Have to Be</span> <span class="p-tl t-b">Figured Out Yet.</span></span></h2>
         <p class="y-cta__lead">Maybe you know exactly what you want. Maybe you just know your current home isn’t working anymore. <span>Start there.</span></p>
         <p>Tell us about your property and what you’re considering. We’ll talk through your goals and help you understand the next step.</p>
+        <ul class="y-cta__list"><li><span>Call</span><a href="tel:+17274044889">727-404-4889</a></li><li><span>Email</span><a href="mailto:info@crownpointconstruction.com">info@crownpointconstruction.com</a></li><li><span>License</span>CGC1538561</li></ul>
       </div>
 
       <form class="y-form" aria-labelledby="form-title" data-reveal style="--reveal-delay:100ms" action="#" method="post">
@@ -2562,7 +2692,7 @@ document.querySelector('.y-form')?.addEventListener('submit', (e) => e.preventDe
     if (innerWidth < 640) return;
     const fs = parseFloat(getComputedStyle(h1).fontSize);
     const widest = Math.max(...lines.map((l) => { const c = l.children; return c[c.length - 1].getBoundingClientRect().right - c[0].getBoundingClientRect().left; }));
-    const cap = parseFloat(getComputedStyle(document.documentElement).fontSize) * 3.5;
+    const cap = parseFloat(getComputedStyle(document.documentElement).fontSize) * 4.5;
     if (widest > 0) h1.style.fontSize = Math.min(cap, fs * (h1.clientWidth / widest) * 0.98) + 'px';
   };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fit);
@@ -2585,7 +2715,7 @@ document.querySelector('.y-form')?.addEventListener('submit', (e) => e.preventDe
 
 (() => {
   /* every section title holds to two lines (tablet and up): step the size down only if a title would run to a third line */
-  const titles = [...document.querySelectorAll('main h2')].filter((t) => t.id !== 'who-title' && t.id !== 'why-title' );   /* this one is allowed three lines in its narrow column */
+  const titles = [...document.querySelectorAll('main h2')].filter((t) => t.id !== 'who-title' && t.id !== 'why-title' && t.id !== 'svc-title');   /* this one is allowed three lines in its narrow column */
   const MIN = 28;
   const run = () => titles.forEach((t) => {
     t.style.fontSize = '';
