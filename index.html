@@ -1941,7 +1941,7 @@ main h2 .t-l { color: var(--brand-mid); }
 @media (min-width: 40rem) { .p-why .p-points { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 75rem) { .p-why .p-points { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .p-why .p-points > li { counter-increment: pt; padding: var(--space-8) 0 !important; }
-.p-why .p-points > li::before { content: counter(pt, decimal-leading-zero); display: block; margin-bottom: var(--space-6);
+.p-why .p-points > li::before { content: counter(pt); display: block; margin-bottom: var(--space-6);
   font-family: var(--font-display); font-weight: 300; font-size: 2.75rem; line-height: 1; letter-spacing: -.02em; color: var(--brass); }
 .p-why .p-points h3 { font-size: 1.25rem !important; margin-bottom: var(--space-3); }
 .p-why .p-points p { font-size: 1rem !important; line-height: 1.6; }
@@ -1982,7 +1982,7 @@ main h2 .t-l { color: var(--brand-mid); }
 .rv__src { font-size: var(--text-sm); color: var(--grey-600); }
 
 /* commercial */
-.p-com__panel { background: var(--ink) !important; border-left: 4px solid var(--brass); padding: clamp(var(--space-8), 4vw, var(--space-16)) !important; }
+.p-com__panel { background: var(--ink) !important; border-left: 0 !important; padding: clamp(var(--space-8), 4vw, var(--space-16)) !important; }
 .p-com h2 { font-size: clamp(1.75rem, 1.2vw + 1.2rem, 2.5rem) !important; margin-bottom: var(--space-4) !important; }
 .p-com p:not(.eyebrow) { color: rgb(255 255 255 / .72); max-width: 62ch; }
 
@@ -2027,7 +2027,7 @@ main h2 .t-l { color: var(--brand-mid); }
 .p-svclist .p-ex { counter-reset: ex; }
 .p-svclist .p-ex__btn { counter-increment: ex; gap: var(--space-5) !important; justify-content: flex-start !important;
   min-height: 4.25rem; padding: var(--space-4) var(--space-5) !important; color: var(--brand-mid) !important; font-weight: 500 !important; }
-.p-svclist .p-ex__btn::before { content: counter(ex, decimal-leading-zero); position: static !important; transform: none !important; width: 1.75rem !important;
+.p-svclist .p-ex__btn::before { content: counter(ex); position: static !important; transform: none !important; width: 1.75rem !important;
   background: none !important; border-radius: 0 !important; flex: none; font-family: var(--font-display); font-size: .9375rem; font-weight: 400;
   letter-spacing: .02em; color: var(--grey-400); transition: color .25s var(--p-ease); }
 .p-svclist .p-ex__btn .p-ex__icon { margin-left: auto; }
@@ -2070,7 +2070,7 @@ main h2 .t-l { color: var(--brand-mid); }
 
   .p-svclist .p-ex__panel { position: relative; background: var(--white) !important; border: 1px solid var(--grey-200) !important;
     box-shadow: 0 30px 60px -36px rgb(11 11 11 / .22); }
-  .p-svclist .p-ex__panel::before { content: counter(ex, decimal-leading-zero) " / 07"; position: absolute; top: var(--space-8); right: var(--space-10);
+  .p-svclist .p-ex__panel::before { content: counter(ex) " / 7"; position: absolute; top: var(--space-8); right: var(--space-10);
     font-family: var(--font-display); font-size: 1rem; font-weight: 400; letter-spacing: .04em; color: var(--grey-400); }
   .p-svclist .p-ex__body { justify-content: center !important; padding: var(--space-12) var(--space-12) !important; gap: var(--space-4) !important; }
   .p-svclist .p-ex__body p:not(.p-ex__tag) { max-width: 58ch; }
@@ -2352,19 +2352,19 @@ main h2 .t-l { color: var(--brand-mid); }
     <div class="p-gal__track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Featured projects">
       <article class="p-slide" aria-roledescription="slide" aria-label="1 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Outdoor living space remodel in Tarpon Springs, Florida: covered patio with a pool"><div class="p-media__fill" style="background:url(assets/img/project-tarpon-springs-patio.jpg) center 55% / cover no-repeat"></div></div>
-        <div class="p-slide__cap"><div><h3>Outdoor Living Space</h3><p class="p-slide__loc">Tarpon Springs, FL</p></div><span class="p-slide__n" aria-hidden="true">01</span></div>
+        <div class="p-slide__cap"><div><h3>Outdoor Living Space</h3><p class="p-slide__loc">Tarpon Springs, FL</p></div><span class="p-slide__n" aria-hidden="true">1</span></div>
       </article>
       <article class="p-slide" aria-roledescription="slide" aria-label="2 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Kitchen remodel in Westchase, Florida"><div class="p-media__fill" style="background:url(assets/img/project-westchase-kitchen.jpg) center 40% / cover no-repeat"></div></div>
-        <div class="p-slide__cap"><div><h3>Kitchen Remodel</h3><p class="p-slide__loc">Westchase, FL</p></div><span class="p-slide__n" aria-hidden="true">02</span></div>
+        <div class="p-slide__cap"><div><h3>Kitchen Remodel</h3><p class="p-slide__loc">Westchase, FL</p></div><span class="p-slide__n" aria-hidden="true">2</span></div>
       </article>
       <article class="p-slide" aria-roledescription="slide" aria-label="3 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Bathroom addition in Clearwater, Florida, with a navy vanity and gold fixtures"><div class="p-media__fill" style="background:url(assets/img/project-clearwater-bath.jpg) center 55% / cover no-repeat"></div></div>
-        <div class="p-slide__cap"><div><h3>Bathroom Addition</h3><p class="p-slide__loc">Clearwater, FL</p></div><span class="p-slide__n" aria-hidden="true">03</span></div>
+        <div class="p-slide__cap"><div><h3>Bathroom Addition</h3><p class="p-slide__loc">Clearwater, FL</p></div><span class="p-slide__n" aria-hidden="true">3</span></div>
       </article>
       <article class="p-slide" aria-roledescription="slide" aria-label="4 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Kitchen sink upgrade with a quartz countertop in St. Petersburg, Florida"><div class="p-media__fill" style="background:url(assets/img/project-st-pete-kitchen-sink.jpg) center 50% / cover no-repeat"></div></div>
-        <div class="p-slide__cap"><div><h3>Kitchen Upgrade</h3><p class="p-slide__loc">St. Petersburg, FL</p></div><span class="p-slide__n" aria-hidden="true">04</span></div>
+        <div class="p-slide__cap"><div><h3>Kitchen Upgrade</h3><p class="p-slide__loc">St. Petersburg, FL</p></div><span class="p-slide__n" aria-hidden="true">4</span></div>
       </article>
     </div>
   </div>
