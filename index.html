@@ -2059,6 +2059,14 @@ body { line-height: 1.6; }
 .band--tint { --border-hairline: #e6e2dd; }
 #svc-title .t-row:nth-child(2), #svc-title .t-row:nth-child(3) { color: var(--ink) !important; }
 .p-svc .p-intro { align-items: center; }
+
+/* commercial panel: gallery photo under a dark scrim so the copy stays legible */
+.p-com__panel { background:
+  linear-gradient(90deg, rgb(11 11 11 / .94) 0%, rgb(11 11 11 / .82) 45%, rgb(11 11 11 / .55) 100%),
+  url('assets/img/project-tarpon-springs-patio.jpg') center 60% / cover no-repeat !important; }
+@media (max-width: 59.99rem) { .p-com__panel { background:
+  linear-gradient(rgb(11 11 11 / .86), rgb(11 11 11 / .86)),
+  url('assets/img/project-tarpon-springs-patio.jpg') center / cover no-repeat !important; } }
 </style>
 </head>
 <body>
