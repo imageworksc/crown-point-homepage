@@ -2053,6 +2053,27 @@ main h2 .t-l { color: var(--brand-mid); }
 body { line-height: 1.6; }
 .p-why .p-points p { font-size: .9375rem !important; }
 .sf__col li, .sf__brand p { font-size: .9375rem; }
+
+/* ===================== services intro v2 — neutral ground, three pillars ===================== */
+:root { --grey-050: #F5F4F2; --surface-band: #F5F4F2; --p-ph: #e9e6e2; }
+.band--tint { --border-hairline: #e6e2dd; }
+#svc-title .t-row:nth-child(2), #svc-title .t-row:nth-child(3) { color: var(--ink) !important; }
+.p-svc .p-intro { align-items: center; }
+.pl { display: grid; gap: var(--space-5); margin-top: clamp(var(--space-12), 6vw, var(--space-20)); }
+@media (min-width: 56rem) { .pl { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); } }
+.pl__item { display: flex; flex-direction: column; gap: var(--space-3); padding: clamp(var(--space-6), 2.6vw, var(--space-10)); background: var(--white); border: 1px solid #e6e2dd;
+  transition: box-shadow .3s var(--p-ease), border-color .3s; }
+.pl__item:hover { border-color: #d6d1cb; box-shadow: 0 24px 48px -30px rgb(11 11 11 / .2); }
+.pl__t { font-size: clamp(1.5rem, .8vw + 1.2rem, 1.875rem) !important; font-weight: 700 !important; line-height: 1.1; color: var(--ink); }
+.pl__d { color: var(--grey-600); max-width: 40ch; }
+.pl__list { margin-top: auto; padding-top: var(--space-4); }
+.pl__list li { border-top: 1px solid #ebe8e4; }
+.pl__list a { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 3rem; padding-block: var(--space-2);
+  font-family: var(--font-display); font-size: 1.0625rem; font-weight: 500; line-height: 1.3; color: var(--ink); text-decoration: none; transition: color .2s; }
+.pl__list svg { flex: none; width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+  opacity: .35; transition: opacity .2s, transform .3s var(--p-ease); }
+.pl__list a:hover { color: var(--brass-ink); }
+.pl__list a:hover svg { opacity: 1; transform: translateX(3px); }
 </style>
 </head>
 <body>
@@ -2210,6 +2231,25 @@ body { line-height: 1.6; }
       <a class="p-jump" href="#service-list">View Our Services<span class="p-jump__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span></a>
     </div>
     <div class="p-media p-curtain p-intro__img" data-reveal role="img" aria-label="Completed design-build kitchen renovation in St. Petersburg, Florida, with a waterfall-edge island"><div class="p-media__fill" style="background:url(assets/img/kitchen-waterfall-island.jpg) center 55% / cover no-repeat"></div></div>
+  </div>
+  <div class="wrap">
+    <div class="pl" data-reveal>
+      <div class="pl__item">
+        <h3 class="pl__t">Remodel</h3>
+        <p class="pl__d">Rework the layout, update the rooms you use most, and bring an older home up to date.</p>
+        <ul class="pl__list"><li><a href="#svc-whole">Whole-Home Remodeling<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="#svc-bungalow">Bungalow &amp; Small Home Remodeling<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="#svc-kitchen">Kitchen Remodeling<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="#svc-bath">Bathroom Remodeling<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li></ul>
+      </div>
+      <div class="pl__item">
+        <h3 class="pl__t">Add Space</h3>
+        <p class="pl__d">Add the room your home is missing — onto the house or as a separate living space on the lot.</p>
+        <ul class="pl__list"><li><a href="#svc-additions">Home Additions<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><a href="#svc-adu">ADUs, Guest Houses &amp; In-Law Suites<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li></ul>
+      </div>
+      <div class="pl__item">
+        <h3 class="pl__t">Build New</h3>
+        <p class="pl__d">Start from the ground up with a home planned around the way you live.</p>
+        <ul class="pl__list"><li><a href="#svc-custom">Custom Home Building<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li></ul>
+      </div>
+    </div>
   </div>
 </section>
 
