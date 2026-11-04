@@ -1850,25 +1850,24 @@ body::before { display: none; }
 @media (prefers-reduced-motion: reduce) { .sh-m.is-open, .sh-m.is-open .sh-m__main > li { animation: none; } .sh__panel, .sh__link::after, .sh__group a { transition: none; } }
 
 /* =====================================================================
-   FOOTER v3 — one band: logo · nav · contact, then a single legal line
+   FOOTER v4 — brand + three short columns, then one legal line
    ===================================================================== */
 .sf { background: var(--ink); color: rgb(255 255 255 / .62); }
 .sf a { color: inherit; text-decoration: none; }
 .sf p { max-width: none; }
-.sf__main { display: grid; gap: var(--space-8); align-items: center; padding-block: clamp(var(--space-12), 5vw, var(--space-16)); }
-@media (min-width: 64rem) { .sf__main { grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--space-12); } }
-.sf__logo { display: inline-flex; justify-self: start; }
-.sf__logo img { display: block; height: 3rem; width: auto; }
-.sf__nav ul { display: flex; flex-wrap: wrap; gap: 0 var(--space-8); }
-@media (min-width: 64rem) { .sf__nav ul { justify-content: center; } }
-.sf__nav a { display: inline-flex; align-items: center; min-height: var(--touch-min); font-family: var(--font-display); font-size: 1.0625rem; font-weight: 500; color: rgb(255 255 255 / .86); transition: color .2s; }
-.sf__nav a:hover { color: var(--brass); }
-.sf__contact { display: flex; flex-direction: column; align-items: flex-start; }
-@media (min-width: 64rem) { .sf__contact { align-items: flex-end; text-align: right; } }
-.sf__tel, .sf__mail { display: inline-flex; align-items: center; min-height: var(--touch-min); transition: color .2s; }
-.sf__tel { font-family: var(--font-display); font-size: 1.375rem; font-weight: 600; color: var(--white) !important; min-height: 2.25rem; }
-.sf__mail { font-size: var(--text-sm); overflow-wrap: anywhere; min-height: 2rem; }
-.sf__tel:hover, .sf__mail:hover { color: var(--brass) !important; }
+.sf__main { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-10) var(--space-8); padding-block: clamp(var(--space-12), 6vw, var(--space-20)); }
+.sf__brand { grid-column: 1 / -1; }
+@media (min-width: 64rem) { .sf__main { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, .7fr) minmax(0, 1.3fr); gap: var(--space-12); } .sf__brand { grid-column: auto; } .sf__col a[href^="mailto"] { white-space: nowrap; } }
+@media (max-width: 39.99rem) { .sf__main { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); } }
+.sf__logo { display: inline-flex; margin-bottom: var(--space-5); }
+.sf__logo img { display: block; height: 3.25rem; width: auto; }
+.sf__brand p { max-width: 34ch; font-size: var(--text-base); line-height: 1.6; }
+.sf h2 { max-width: none !important; margin: 0 0 var(--space-4); font-family: var(--font-display); font-size: 1rem !important; font-weight: 600 !important; letter-spacing: .01em; color: var(--white); }
+.sf__col li { font-size: 1rem; line-height: 1.4; }
+.sf__col a, .sf__col span { display: inline-flex; align-items: center; min-height: 2.25rem; color: rgb(255 255 255 / .7); overflow-wrap: anywhere; transition: color .2s; }
+@media (pointer: coarse) { .sf__col a { min-height: var(--touch-min); } }
+.sf__col a:hover { color: var(--brass); }
+.sf__col .sf__tel { font-family: var(--font-display); font-size: 1.125rem; font-weight: 600; color: var(--white); }
 .sf__bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4) var(--space-8);
   padding-block: var(--space-6) calc(var(--space-6) + env(safe-area-inset-bottom, 0px)); border-top: 1px solid rgb(255 255 255 / .1); }
 .sf__bottom p { font-size: var(--text-sm); line-height: 1.6; color: rgb(255 255 255 / .5); }
@@ -2450,23 +2449,44 @@ main h2 .t-l { color: var(--brand-mid); }
 <footer class="sf">
   <div class="wrap">
     <div class="sf__main">
-      <a class="sf__logo" href="#top"><img src="assets/logo/crown-point-option-1-badge-dark.svg" alt="Crown Point Construction" width="983" height="266" loading="lazy"></a>
-      <nav class="sf__nav" aria-label="Footer">
+      <div class="sf__brand">
+        <a class="sf__logo" href="#top"><img src="assets/logo/crown-point-option-1-badge-dark.svg" alt="Crown Point Construction" width="983" height="266" loading="lazy"></a>
+        <p>Owner-led remodeling, custom homes, additions, and ADUs in St. Petersburg and throughout Pinellas County.</p>
+      </div>
+      <nav class="sf__col" aria-labelledby="sf-svc">
+        <h2 id="sf-svc">Services</h2>
         <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#work">Our Work</a></li>
+          <li><a href="#svc-whole">Whole-Home Remodeling</a></li>
+          <li><a href="#svc-bungalow">Bungalow &amp; Small Homes</a></li>
+          <li><a href="#svc-custom">Custom Home Building</a></li>
+          <li><a href="#svc-additions">Home Additions</a></li>
+          <li><a href="#svc-adu">ADUs &amp; Guest Houses</a></li>
+          <li><a href="#svc-kitchen">Kitchen Remodeling</a></li>
+          <li><a href="#svc-bath">Bathroom Remodeling</a></li>
+        </ul>
+      </nav>
+      <nav class="sf__col" aria-labelledby="sf-co">
+        <h2 id="sf-co">Company</h2>
+        <ul>
           <li><a href="#who">About</a></li>
+          <li><a href="#work">Our Work</a></li>
           <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#commercial">Commercial</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <div class="sf__contact">
-        <a class="sf__tel" href="tel:+17274044889">727-404-4889</a>
-        <a class="sf__mail" href="mailto:info@crownpointconstruction.com">info@crownpointconstruction.com</a>
+      <div class="sf__col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a class="sf__tel" href="tel:+17274044889">727-404-4889</a></li>
+          <li><a href="mailto:info@crownpointconstruction.com">info@crownpointconstruction.com</a></li>
+          <li><span>St. Petersburg, Florida</span></li>
+          <li><span>License #CGC1538561</span></li>
+        </ul>
       </div>
     </div>
     <div class="sf__bottom">
-      <p>© 2026 Crown Point Construction <span aria-hidden="true">·</span> Florida Certified General Contractor <span aria-hidden="true">·</span> License #CGC1538561</p>
+      <p>© 2026 Crown Point Construction. Florida Certified General Contractor.</p>
       <ul class="sf__social" aria-label="Social media">
         <li><a href="#" aria-label="Crown Point on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M14.5 8.25V6.9c0-.75.5-1.15 1.2-1.15h1.8V2.5h-2.6c-2.95 0-4.15 1.95-4.15 4.25v1.5H8.5v3.3h2.25v9.95h3.75v-9.95h2.6l.45-3.3z"/></svg></a></li>
         <li><a href="#" aria-label="Crown Point on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.9"/><circle class="f" cx="17.1" cy="6.9" r=".6"/></svg></a></li>
