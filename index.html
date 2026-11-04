@@ -1922,14 +1922,6 @@ main h2 .t-l { color: var(--brand-mid); }
 .band--dark h2 .t-l, .p-who h2 .t-l, .y-cta h2 .t-l { color: rgb(255 255 255 / .78); }
 .t-row { display: block; }
 
-/* eyebrow over every section title */
-.eyebrow { display: inline-flex !important; align-items: center; gap: .75rem; margin: 0 0 var(--space-5) !important; max-width: none;
-  font-family: var(--font) !important; font-size: .8125rem !important; font-weight: 600 !important; letter-spacing: .16em; text-transform: uppercase; line-height: 1.2;
-  color: var(--grey-600) !important; }
-.eyebrow::before { content: ""; width: .625rem; height: .625rem; background: var(--brass); flex: none; }
-.band--dark .eyebrow, .p-who .eyebrow, .p-com .eyebrow, .y-cta .eyebrow { color: rgb(255 255 255 / .6) !important; }
-.p-who__copy .eyebrow, .p-why__copy .eyebrow, .p-svc__head .eyebrow { margin-bottom: 0 !important; }
-
 /* hero: headline across, then lead | actions on one rule */
 .hz h1 .t-l { color: var(--brand-mid); }
 @media (min-width: 64rem) {
@@ -2021,6 +2013,67 @@ main h2 .t-l { color: var(--brand-mid); }
   .y-form { padding: clamp(var(--space-8), 3vw, var(--space-12)) !important; background: rgb(255 255 255 / .035); border: 1px solid rgb(255 255 255 / .1); }
   .y-form__grid { grid-template-columns: 1fr 1fr !important; }
   .y-form__grid > .y-f:first-child { grid-column: 1 / -1; }
+}
+
+
+/* =====================================================================
+   v4 — no eyebrows, no orange rules over cards, services explorer redesign
+   ===================================================================== */
+.rv__card { border-top: 0 !important; box-shadow: 0 1px 0 rgb(11 11 11 / .04), 0 24px 48px -28px rgb(11 11 11 / .18); }
+.p-who__note { border-top: 0 !important; }
+.sh__promo::after { display: none !important; }
+
+/* services explorer */
+.p-svclist .p-ex { counter-reset: ex; }
+.p-svclist .p-ex__btn { counter-increment: ex; gap: var(--space-5) !important; justify-content: flex-start !important;
+  min-height: 4.25rem; padding: var(--space-4) var(--space-5) !important; color: var(--brand-mid) !important; font-weight: 500 !important; }
+.p-svclist .p-ex__btn::before { content: counter(ex, decimal-leading-zero); position: static !important; transform: none !important; width: 1.75rem !important;
+  background: none !important; border-radius: 0 !important; flex: none; font-family: var(--font-display); font-size: .9375rem; font-weight: 400;
+  letter-spacing: .02em; color: var(--grey-400); transition: color .25s var(--p-ease); }
+.p-svclist .p-ex__btn .p-ex__icon { margin-left: auto; }
+.p-svclist .p-ex__btn:hover { background: var(--grey-050) !important; color: var(--ink) !important; }
+.p-svclist .p-ex__btn[aria-expanded="true"] { color: var(--ink) !important; font-weight: 600 !important; }
+.p-svclist .p-ex__btn[aria-expanded="true"]::before { color: var(--brass-ink); }
+
+.p-svclist .p-ex__ico { display: grid !important; place-items: center; width: 4rem !important; height: 4rem !important; margin-bottom: var(--space-3) !important; background: var(--grey-050) !important; }
+.p-svclist .p-ex__ico svg.ic { width: 2.25rem !important; height: 2.25rem !important; }
+.p-svclist .p-ex__body .p-ex__tag { font-family: var(--font-display); font-size: clamp(1.5rem, 1vw + 1.1rem, 2.125rem) !important; font-weight: 600 !important;
+  line-height: 1.15 !important; letter-spacing: -.015em !important; color: var(--ink) !important; margin-bottom: var(--space-1); }
+.p-svclist .p-ex__body p:not(.p-ex__tag) { color: var(--grey-900); }
+.p-svclist .p-ex__body p:not(.p-ex__tag) + p:not(.p-ex__tag) { padding-top: var(--space-4); border-top: 1px solid var(--grey-200); color: var(--grey-600); }
+.p-svclist .p-ex__body .p-link { display: inline-flex; align-items: center; gap: .75rem; min-height: 3.25rem; margin-top: var(--space-3); padding: 0 var(--space-6);
+  background: var(--ink); color: var(--white) !important; text-decoration: none; font-family: var(--font-display); font-weight: 500 !important;
+  transition: background .25s var(--p-ease), color .25s; }
+.p-svclist .p-ex__body .p-link::after { content: ""; width: .5rem; height: .5rem; border-top: 2px solid currentColor; border-right: 2px solid currentColor; rotate: 45deg; transition: translate .3s var(--p-ease); }
+.p-svclist .p-ex__body .p-link:hover { background: var(--brass); color: var(--ink) !important; }
+.p-svclist .p-ex__body .p-link:hover::after { translate: 3px 0; }
+
+@media (max-width: 63.99rem) {
+  .p-svclist .p-ex__item.is-active { background: var(--white) !important; }
+  .p-svclist .p-ex__item.is-active .p-ex__btn { background: var(--ink) !important; color: var(--white) !important; }
+  .p-svclist .p-ex__item.is-active .p-ex__btn::before { color: var(--brass); }
+  .p-svclist .p-ex__item.is-active .p-ex__panel { border: 1px solid var(--grey-200); border-top: 0; }
+  .p-svclist .p-ex__body { padding: var(--space-6) var(--space-5) var(--space-8) !important; }
+}
+
+@media (min-width: 64rem) {
+  .p-svclist .p-ex { column-gap: var(--space-10) !important; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) !important; }
+  .p-svclist .p-ex__item:first-child .p-ex__btn { border-top: 1px solid var(--grey-200) !important; }
+  .p-svclist .p-ex__btn { border-bottom-color: var(--grey-200) !important; padding-left: var(--space-5) !important; transition: background .25s var(--p-ease), color .25s var(--p-ease); }
+  .p-svclist .p-ex__btn[aria-expanded="true"] { background: var(--ink) !important; color: var(--white) !important; padding-left: var(--space-5) !important; border-bottom-color: var(--ink) !important; }
+  .p-svclist .p-ex__btn[aria-expanded="true"]::before { color: var(--brass); }
+  .p-svclist .p-ex__icon { display: block !important; width: .5rem; height: .5rem; border-top: 2px solid currentColor; border-right: 2px solid currentColor; rotate: 45deg;
+    opacity: 0; translate: -6px 0; transition: opacity .25s, translate .3s var(--p-ease); }
+  .p-svclist .p-ex__icon::before, .p-svclist .p-ex__icon::after { display: none; }
+  .p-svclist .p-ex__btn:hover .p-ex__icon { opacity: .5; translate: 0 0; }
+  .p-svclist .p-ex__btn[aria-expanded="true"] .p-ex__icon { opacity: 1; translate: 0 0; color: var(--brass); }
+
+  .p-svclist .p-ex__panel { position: relative; background: var(--white) !important; border: 1px solid var(--grey-200) !important;
+    box-shadow: 0 30px 60px -36px rgb(11 11 11 / .22); }
+  .p-svclist .p-ex__panel::before { content: counter(ex, decimal-leading-zero) " / 07"; position: absolute; top: var(--space-8); right: var(--space-10);
+    font-family: var(--font-display); font-size: 1rem; font-weight: 400; letter-spacing: .04em; color: var(--grey-400); }
+  .p-svclist .p-ex__body { justify-content: center !important; padding: var(--space-12) var(--space-12) !important; gap: var(--space-4) !important; }
+  .p-svclist .p-ex__body p:not(.p-ex__tag) { max-width: 58ch; }
 }
 
 </style>
@@ -2161,7 +2214,6 @@ main h2 .t-l { color: var(--brand-mid); }
 <section class="band p-who" id="who" aria-labelledby="who-title">
   <div class="wrap p-who__grid">
     <div class="p-who__copy" data-reveal>
-      <p class="eyebrow">About Crown Point</p>
       <h2 id="who-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="t-b">Remodeling, Building &amp; Additions.</span> <span class="t-l">Managed From Start to Finish.</span></span></h2>
       <p>Crown Point Construction is an owner-led general contractor, home remodeler, and custom home builder in St. Petersburg, Florida, serving homeowners throughout Pinellas County.</p>
       <p>We specialize in whole-home remodeling, custom homes, additions, accessory dwelling units (ADUs), kitchens, bathrooms, and renovations of older St. Pete homes.</p>
@@ -2176,7 +2228,6 @@ main h2 .t-l { color: var(--brand-mid); }
 <section class="band band--tint p-svc" id="services" aria-labelledby="svc-title">
   <div class="wrap p-intro p-fix">
     <div class="p-svc__head" data-reveal>
-      <p class="eyebrow">What We Do</p>
       <h2 id="svc-title" class="p-h2r"><span class="p-h2i"><span class="t-row t-b">Remodel.</span> <span class="t-row t-m">Add Space.</span> <span class="t-row t-l">Build New.</span></span></h2>
       <p class="lead">Whether your home needs a better layout, more room, a major update, or a fresh start, Crown Point helps turn the idea into a finished project with planning and construction working together.</p>
       <a class="p-jump" href="#service-list">View Our Services<span class="p-jump__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span></a>
@@ -2273,7 +2324,6 @@ main h2 .t-l { color: var(--brand-mid); }
   <div class="wrap">
     <div class="p-why__grid">
       <div class="p-why__copy" data-reveal>
-        <p class="eyebrow">Why Crown Point</p>
         <h2 id="why-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="t-l">Work Directly With</span> <span class="t-b">the Person Responsible for Your Project.</span></span></h2>
         <p class="p-why__intro">A major remodeling or construction project involves a lot of decisions. You shouldn’t have to wonder who is responsible for yours.</p>
         <p>Brian stays directly involved in the work, decisions, and communication throughout the project.</p>
@@ -2294,7 +2344,7 @@ main h2 .t-l { color: var(--brand-mid); }
 <section class="band p-work" id="work" aria-labelledby="work-title">
   <div class="wrap">
     <div class="p-work__head" data-reveal>
-      <div><p class="eyebrow">Our Work</p><h2 id="work-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="t-l">See What</span> <span class="t-b">We’ve Built.</span></span></h2><p class="p-work__claim">Real projects tell the story better than promises.</p></div>
+      <div><h2 id="work-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="t-l">See What</span> <span class="t-b">We’ve Built.</span></span></h2><p class="p-work__claim">Real projects tell the story better than promises.</p></div>
       <p>Explore home remodeling, additions, ADUs, kitchens, bathrooms, and residential construction projects completed throughout St. Petersburg, Clearwater, and Pinellas County.</p>
     </div>
   </div>
@@ -2334,7 +2384,7 @@ main h2 .t-l { color: var(--brand-mid); }
 <section class="band band--tint p-rev" id="reviews" aria-labelledby="rev-title">
   <div class="wrap">
     <div class="p-rev__head" data-reveal>
-      <div><p class="eyebrow">Reviews</p><h2 id="rev-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="t-l">What</span> <span class="t-b">Homeowners Say</span></span></h2></div>
+      <div><h2 id="rev-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="t-l">What</span> <span class="t-b">Homeowners Say</span></span></h2></div>
       <a class="p-link" href="#">Read Our Google Reviews</a>
     </div>
     <ul class="rv">
@@ -2346,7 +2396,7 @@ main h2 .t-l { color: var(--brand-mid); }
 
 <section class="band band--snug p-com" id="commercial" aria-labelledby="com-title">
   <div class="wrap"><div class="p-com__panel" data-reveal>
-    <div><p class="eyebrow">Commercial</p><h2 id="com-title">Have a Commercial Project?</h2><p>Residential construction is Crown Point’s primary focus, but we also consider select commercial construction and renovation projects in St. Petersburg and Pinellas County.</p></div>
+    <div><h2 id="com-title">Have a Commercial Project?</h2><p>Residential construction is Crown Point’s primary focus, but we also consider select commercial construction and renovation projects in St. Petersburg and Pinellas County.</p></div>
     <a class="btn btn--quiet" href="#contact">Discuss a Commercial Project</a>
   </div></div>
 </section>
@@ -2354,7 +2404,6 @@ main h2 .t-l { color: var(--brand-mid); }
 <section class="band band--tint p-faq" aria-labelledby="faq-title">
   <div class="wrap fq2">
     <div class="fq2__head">
-      <p class="eyebrow">FAQ</p>
       <h2 id="faq-title" class="p-h2r" data-reveal><span class="p-h2i"><span class="p-tl t-l">Questions Before You</span> <span class="p-tl t-b">Remodel or Build</span></span></h2>
       <p>Straight answers to what homeowners ask most before starting a remodel, addition, ADU, or new home.</p>
       <p class="fq2__more">Still have a question? <a href="tel:+17274044889">Call 727-404-4889</a></p>
@@ -2396,7 +2445,6 @@ main h2 .t-l { color: var(--brand-mid); }
   <div class="wrap">
     <div class="y-cta__inner">
       <div class="y-cta__intro" data-reveal>
-        <p class="eyebrow">Get Started</p>
         <h2 id="cta-title" class="p-h2r"><span class="p-h2i"><span class="p-tl t-l">Your Project Doesn’t Have to Be</span> <span class="p-tl t-b">Figured Out Yet.</span></span></h2>
         <p class="y-cta__lead">Maybe you know exactly what you want. Maybe you just know your current home isn’t working anymore. <span>Start there.</span></p>
         <p>Tell us about your property and what you’re considering. We’ll talk through your goals and help you understand the next step.</p>
