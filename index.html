@@ -2067,6 +2067,36 @@ body { line-height: 1.6; }
 @media (max-width: 59.99rem) { .p-com__panel { background:
   linear-gradient(rgb(11 11 11 / .86), rgb(11 11 11 / .86)),
   url('assets/img/project-tarpon-springs-patio.jpg') center / cover no-repeat !important; } }
+
+/* ===================== menu dropdowns v2 + logo orange only ===================== */
+:root { --brass-ink: #FD673D; }
+.sh__panel-in { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr) !important; gap: var(--space-12) !important; padding-block: var(--space-10) var(--space-10) !important; }
+.sh__svc-h { margin: 0 0 var(--space-3); font-size: .8125rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--grey-600); }
+.sh__svc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--space-6); }
+.sh__svc-grid a { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-3) var(--space-4); margin-inline: calc(var(--space-4) * -1);
+  color: var(--ink); text-decoration: none; transition: background .2s var(--p-ease); }
+.sh__svc-grid a:hover { background: var(--grey-050); }
+.sh__ic { flex: none; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; background: var(--white); border: 1px solid #e6e2dd; transition: background .2s, border-color .2s; }
+.sh__ic svg { width: 1.375rem !important; height: 1.375rem !important; stroke: var(--ink); stroke-width: 1.5 !important; }
+.sh__svc-grid a:hover .sh__ic { background: var(--brass); border-color: var(--brass); }
+.sh__tx { display: flex; flex-direction: column; gap: .125rem; min-width: 0; }
+.sh__tx b { font-family: var(--font-display); font-size: 1.0625rem; font-weight: 600; line-height: 1.25; }
+.sh__tx small { font-size: .875rem; line-height: 1.4; color: var(--grey-600); }
+.sh__svc-foot { display: flex; flex-wrap: wrap; gap: 0 var(--space-8); margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--grey-200); }
+.sh__svc-foot a { display: inline-flex; align-items: center; gap: .5rem; min-height: var(--touch-min); font-family: var(--font-display); font-weight: 500; color: var(--ink); text-decoration: none; transition: color .2s; }
+.sh__svc-foot svg { width: 1rem !important; height: 1rem !important; transition: transform .3s var(--p-ease); }
+.sh__svc-foot a:hover { color: var(--brass); }
+.sh__svc-foot a:hover svg { transform: translateX(3px); }
+.sh__promo { justify-content: flex-end; min-height: 22rem; padding: var(--space-8) !important;
+  background: linear-gradient(180deg, rgb(11 11 11 / .25) 0%, rgb(11 11 11 / .88) 70%), url('assets/img/kitchen-waterfall-island.jpg') center / cover no-repeat !important; }
+.sh__promo img { margin-bottom: auto !important; }
+.sh__promo-p { color: rgb(255 255 255 / .8); }
+
+.sh-m__list { display: grid; gap: var(--space-1); }
+.sh-m__list a { display: flex !important; align-items: center; gap: var(--space-4); min-height: 3.25rem !important; font-family: var(--font-display); font-weight: 500; }
+.sh-m__list .sh__ic { width: 2.5rem; height: 2.5rem; }
+.sh-m__list li:last-child { margin-top: var(--space-2); padding-top: var(--space-3); border-top: 1px solid var(--grey-200); }
+.sh-m svg { display: block; fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 </style>
 </head>
 <body>
@@ -2090,32 +2120,13 @@ body { line-height: 1.6; }
             <button class="sh__link sh__ddbtn" type="button" aria-expanded="false" aria-controls="sh-services">Services<span class="sh__chev" aria-hidden="true"></span></button>
             <div class="sh__panel" id="sh-services">
               <div class="wrap sh__panel-in">
-                <div class="sh__group">
-                  <p class="sh__gt">Remodel</p>
-                  <ul>
-                    <li><a href="#svc-whole">Whole-Home Remodeling</a></li>
-                    <li><a href="#svc-bungalow">Bungalow &amp; Small Home Remodeling</a></li>
-                    <li><a href="#svc-kitchen">Kitchen Remodeling</a></li>
-                    <li><a href="#svc-bath">Bathroom Remodeling</a></li>
-                  </ul>
-                </div>
-                <div class="sh__group">
-                  <p class="sh__gt">Add Space</p>
-                  <ul>
-                    <li><a href="#svc-additions">Home Additions</a></li>
-                    <li><a href="#svc-adu">ADUs, Guest Houses &amp; In-Law Suites</a></li>
-                  </ul>
-                  <p class="sh__gt sh__gt--gap">Build New</p>
-                  <ul><li><a href="#svc-custom">Custom Home Building</a></li></ul>
-                </div>
-                <div class="sh__group">
-                  <p class="sh__gt">Commercial</p>
-                  <ul><li><a href="#commercial">Commercial General Contracting</a></li></ul>
-                  <p class="sh__gt sh__gt--gap">Learn More</p>
-                  <ul>
-                    <li><a href="#work">Featured Projects</a></li>
-                    <li><a href="#reviews">Homeowner Reviews</a></li>
-                  </ul>
+                <div class="sh__svc">
+                  <p class="sh__svc-h">Residential Services</p>
+                  <ul class="sh__svc-grid"><li><a href="#svc-whole"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.75 20.25V12.2l.78-.62 3.69-2.96L8 8l.78.62 3.69 2.96.78.62v9.05H2.75z"/><path d="M11.25 2.75h10v4h-10z"/><path d="M17 6.75v3"/><path d="M15.75 9.75h2.5v6.5h-2.5z"/></svg></span><span class="sh__tx"><b>Whole-Home Remodeling</b><small>Transform the way your home works.</small></span></a></li><li><a href="#svc-bungalow"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.75 20.75V14.25l4.25-3.5 4.25 3.5v6.5z"/><path d="M12.3 20.75C12.1 16 13 12.3 15.2 9.7l1.3.7c-1.8 2.5-2.2 5.9-1.8 10.35z"/><path d="M15.5 9C13.6 6.6 10.9 6.2 8.6 8.9c2.4-.9 4.6-.7 6.9.1z"/><path d="M15.5 9c-.1-3-1.7-5.1-4.5-6 2 1.9 2.9 3.8 3.3 6.2z"/><path d="M15.5 9c.8-2.8 2.8-4.6 5.5-5-1.9 1.3-3.2 3.1-3.9 5.5z"/><path d="M15.6 9.2c2.5-1.4 5.6-.6 7.15 2.8-2.15-1.7-4.35-2.2-6.55-2z"/></svg></span><span class="sh__tx"><b>Bungalow &amp; Small Home Remodeling</b><small>More function without losing the character.</small></span></a></li><li><a href="#svc-custom"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 12.75 6.25 8.75l4.75 4"/><path d="M2.75 11.75v9.5h7v-9.5"/><path d="M13.75 7.25v14h8.75z"/></svg></span><span class="sh__tx"><b>Custom Home Building</b><small>Build the home around you.</small></span></a></li><li><a href="#svc-additions"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.75 11.5 9.5 5.75l6.75 5.75"/><path d="M4.25 10.25v11h10.5v-11"/><path d="M8 21.25v-4h3v4"/><path d="M19 3.75v5.5"/><path d="M16.25 6.5h5.5"/></svg></span><span class="sh__tx"><b>Home Additions</b><small>Love your home but need more of it?</small></span></a></li><li><a href="#svc-adu"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75 20.25 7.4v9.2L12 21.25 3.75 16.6V7.4z"/><path d="M3.75 7.4 12 12l8.25-4.6"/><path d="M12 12v9.25"/></svg></span><span class="sh__tx"><b>ADUs, Guest Houses &amp; In-Law Suites</b><small>More living space on the property you own.</small></span></a></li><li><a href="#svc-kitchen"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.75 12.75h20.5"/><path d="M2.75 12.75v8.5h18.5v-8.5"/><path d="M12 12.75v8.5"/><path d="M9.5 15.75v2.5M14.5 15.75v2.5"/><path d="M15.25 12.75V8.5a2.5 2.5 0 0 0-5 0v.75"/><path d="M5.25 12.75V10.5h3.5v2.25"/></svg></span><span class="sh__tx"><b>Kitchen Remodeling</b><small>Make the busiest room work better.</small></span></a></li><li><a href="#svc-bath"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.75 12.25h18.5v1.5a5 5 0 0 1-5 5h-8.5a5 5 0 0 1-5-5z"/><path d="M5.5 12.25V5.5a2.25 2.25 0 0 1 4.5 0"/><path d="M6.5 18.75l-1 2.5M17.5 18.75l1 2.5"/></svg></span><span class="sh__tx"><b>Bathroom Remodeling</b><small>Make every square foot work harder.</small></span></a></li></ul>
+                  <div class="sh__svc-foot">
+                    <a href="#commercial">Commercial General Contracting<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    <a href="#service-list">View all services<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                  </div>
                 </div>
                 <a class="sh__promo" href="#contact">
                   <img src="assets/logo/crown-point-symbol-badge.svg" alt="" width="40" height="40">
@@ -2148,16 +2159,7 @@ body { line-height: 1.6; }
       <li>
         <details class="sh-m__svc">
           <summary>Services<span class="sh-m__plus" aria-hidden="true"></span></summary>
-          <div class="sh-m__groups">
-            <p class="sh__gt">Remodel</p>
-            <ul><li><a href="#svc-whole">Whole-Home Remodeling</a></li><li><a href="#svc-bungalow">Bungalow &amp; Small Home Remodeling</a></li><li><a href="#svc-kitchen">Kitchen Remodeling</a></li><li><a href="#svc-bath">Bathroom Remodeling</a></li></ul>
-            <p class="sh__gt">Add Space</p>
-            <ul><li><a href="#svc-additions">Home Additions</a></li><li><a href="#svc-adu">ADUs, Guest Houses &amp; In-Law Suites</a></li></ul>
-            <p class="sh__gt">Build New</p>
-            <ul><li><a href="#svc-custom">Custom Home Building</a></li></ul>
-            <p class="sh__gt">Commercial</p>
-            <ul><li><a href="#commercial">Commercial General Contracting</a></li></ul>
-          </div>
+          <div class="sh-m__groups"><ul class="sh-m__list"><li><a href="#svc-whole"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.75 20.25V12.2l.78-.62 3.69-2.96L8 8l.78.62 3.69 2.96.78.62v9.05H2.75z"/><path d="M11.25 2.75h10v4h-10z"/><path d="M17 6.75v3"/><path d="M15.75 9.75h2.5v6.5h-2.5z"/></svg></span>Whole-Home Remodeling</a></li><li><a href="#svc-bungalow"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.75 20.75V14.25l4.25-3.5 4.25 3.5v6.5z"/><path d="M12.3 20.75C12.1 16 13 12.3 15.2 9.7l1.3.7c-1.8 2.5-2.2 5.9-1.8 10.35z"/><path d="M15.5 9C13.6 6.6 10.9 6.2 8.6 8.9c2.4-.9 4.6-.7 6.9.1z"/><path d="M15.5 9c-.1-3-1.7-5.1-4.5-6 2 1.9 2.9 3.8 3.3 6.2z"/><path d="M15.5 9c.8-2.8 2.8-4.6 5.5-5-1.9 1.3-3.2 3.1-3.9 5.5z"/><path d="M15.6 9.2c2.5-1.4 5.6-.6 7.15 2.8-2.15-1.7-4.35-2.2-6.55-2z"/></svg></span>Bungalow &amp; Small Home Remodeling</a></li><li><a href="#svc-custom"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 12.75 6.25 8.75l4.75 4"/><path d="M2.75 11.75v9.5h7v-9.5"/><path d="M13.75 7.25v14h8.75z"/></svg></span>Custom Home Building</a></li><li><a href="#svc-additions"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.75 11.5 9.5 5.75l6.75 5.75"/><path d="M4.25 10.25v11h10.5v-11"/><path d="M8 21.25v-4h3v4"/><path d="M19 3.75v5.5"/><path d="M16.25 6.5h5.5"/></svg></span>Home Additions</a></li><li><a href="#svc-adu"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75 20.25 7.4v9.2L12 21.25 3.75 16.6V7.4z"/><path d="M3.75 7.4 12 12l8.25-4.6"/><path d="M12 12v9.25"/></svg></span>ADUs, Guest Houses &amp; In-Law Suites</a></li><li><a href="#svc-kitchen"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.75 12.75h20.5"/><path d="M2.75 12.75v8.5h18.5v-8.5"/><path d="M12 12.75v8.5"/><path d="M9.5 15.75v2.5M14.5 15.75v2.5"/><path d="M15.25 12.75V8.5a2.5 2.5 0 0 0-5 0v.75"/><path d="M5.25 12.75V10.5h3.5v2.25"/></svg></span>Kitchen Remodeling</a></li><li><a href="#svc-bath"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.75 12.25h18.5v1.5a5 5 0 0 1-5 5h-8.5a5 5 0 0 1-5-5z"/><path d="M5.5 12.25V5.5a2.25 2.25 0 0 1 4.5 0"/><path d="M6.5 18.75l-1 2.5M17.5 18.75l1 2.5"/></svg></span>Bathroom Remodeling</a></li><li><a href="#commercial"><span class="sh__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.75 20.25h16.5M5.25 20.25V6.75h8.5v13.5M13.75 10.25h5v10M8 9.75h2.75M8 13h2.75M8 16.25h2.75"/></svg></span>Commercial General Contracting</a></li></ul></div>
         </details>
       </li>
       <li><a href="#work">Our Work</a></li>
@@ -2343,19 +2345,19 @@ body { line-height: 1.6; }
     <div class="p-gal__track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Featured projects">
       <article class="p-slide" aria-roledescription="slide" aria-label="1 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Outdoor living space remodel in Tarpon Springs, Florida: covered patio with a pool"><div class="p-media__fill" style="background:url(assets/img/project-tarpon-springs-patio.jpg) center 55% / cover no-repeat"></div></div>
-        <div class="p-slide__cap"><div><h3>Outdoor Living Space</h3><p class="p-slide__loc">Tarpon Springs, FL</p></div><span class="p-slide__n" aria-hidden="true">1</span></div>
+        <div class="p-slide__cap"><div><h3>Outdoor Living Space</h3><p class="p-slide__loc">Tarpon Springs, FL</p></div></div>
       </article>
       <article class="p-slide" aria-roledescription="slide" aria-label="2 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Kitchen remodel in Westchase, Florida"><div class="p-media__fill" style="background:url(assets/img/project-westchase-kitchen.jpg) center 40% / cover no-repeat"></div></div>
-        <div class="p-slide__cap"><div><h3>Kitchen Remodel</h3><p class="p-slide__loc">Westchase, FL</p></div><span class="p-slide__n" aria-hidden="true">2</span></div>
+        <div class="p-slide__cap"><div><h3>Kitchen Remodel</h3><p class="p-slide__loc">Westchase, FL</p></div></div>
       </article>
       <article class="p-slide" aria-roledescription="slide" aria-label="3 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Bathroom addition in Clearwater, Florida, with a navy vanity and gold fixtures"><div class="p-media__fill" style="background:url(assets/img/project-clearwater-bath.jpg) center 55% / cover no-repeat"></div></div>
-        <div class="p-slide__cap"><div><h3>Bathroom Addition</h3><p class="p-slide__loc">Clearwater, FL</p></div><span class="p-slide__n" aria-hidden="true">3</span></div>
+        <div class="p-slide__cap"><div><h3>Bathroom Addition</h3><p class="p-slide__loc">Clearwater, FL</p></div></div>
       </article>
       <article class="p-slide" aria-roledescription="slide" aria-label="4 of 4">
         <div class="p-media p-slide__img" role="img" aria-label="Kitchen sink upgrade with a quartz countertop in St. Petersburg, Florida"><div class="p-media__fill" style="background:url(assets/img/project-st-pete-kitchen-sink.jpg) center 50% / cover no-repeat"></div></div>
-        <div class="p-slide__cap"><div><h3>Kitchen Upgrade</h3><p class="p-slide__loc">St. Petersburg, FL</p></div><span class="p-slide__n" aria-hidden="true">4</span></div>
+        <div class="p-slide__cap"><div><h3>Kitchen Upgrade</h3><p class="p-slide__loc">St. Petersburg, FL</p></div></div>
       </article>
     </div>
   </div>
