@@ -2097,6 +2097,23 @@ body { line-height: 1.6; }
 .sh-m__list .sh__ic { width: 2.5rem; height: 2.5rem; }
 .sh-m__list li:last-child { margin-top: var(--space-2); padding-top: var(--space-3); border-top: 1px solid var(--grey-200); }
 .sh-m svg { display: block; fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* hero photo v3: pinned on scroll, opens from the content width to the whole 3:2 photo (no crop at the end) */
+.hz { overflow: clip !important; }   /* hidden would break the sticky stage */
+.hz__open { clip-path: none !important; margin-inline: auto; position: relative; }
+.hz__photo { height: auto !important; aspect-ratio: 3 / 2; width: 100%; }
+.hz__img { transform: none !important; background-position: center !important; }
+.hz__top { position: absolute !important; left: 0; right: 0; top: 0; padding: var(--space-6) var(--space-6) 0 !important; z-index: 1; }
+.hz__wrap { position: static !important; }
+.hz__bar { border-bottom: var(--hairline) solid var(--grey-200); }
+@media (min-width: 48rem) { .hz__bar li:first-child { padding-left: 0 !important; } }
+@media (max-width: 47.99rem) { .hz__wrap { padding-inline: 0 !important; } .hz__top, .hz__photo::after { display: none !important; } }
+@media (min-width: 64rem) {
+  .hz.is-pin .hz__media { height: calc(var(--hz-stage) + var(--hz-run)); }
+  .hz.is-pin .hz__stage { position: sticky; top: var(--sh-bar); height: var(--hz-stage); display: flex; align-items: flex-start; }
+  .hz.is-pin .hz__open { width: var(--hz-w); }
+  .hz.is-pin .hz__photo { aspect-ratio: auto; height: var(--hz-h) !important; }
+}
 </style>
 </head>
 <body>
@@ -2190,15 +2207,17 @@ body { line-height: 1.6; }
     </div>
   </div>
   <div class="hz__media">
-    <div class="hz__open"><div class="hz__photo"><div class="hz__img" role="img" aria-label="Renovated sunroom with bi-fold windows opening onto the street"></div></div></div>
-    <div class="wrap hz__top"><p class="hz__area">Serving St. Petersburg and homeowners throughout Pinellas County.</p></div>
-    <div class="wrap hz__wrap">
-      <ul class="hz__bar" aria-label="Credentials">
-        <li style="--i:0"><strong>Florida Certified General Contractor</strong><span>License #CGC1538561</span></li>
-        <li style="--i:1"><strong>Owner-Led Projects</strong><span>Direct communication with Brian</span></li>
-        <li style="--i:2"><strong>Design + Construction</strong><span>One coordinated process</span></li>
-      </ul>
+    <div class="hz__stage">
+      <div class="hz__open"><div class="hz__photo"><div class="hz__img" role="img" aria-label="Renovated sunroom with bi-fold windows opening onto the street"></div>
+        <div class="hz__top"><p class="hz__area">Serving St. Petersburg and homeowners throughout Pinellas County.</p></div></div></div>
     </div>
+  </div>
+  <div class="wrap hz__wrap">
+    <ul class="hz__bar" aria-label="Credentials">
+      <li style="--i:0"><strong>Florida Certified General Contractor</strong><span>License #CGC1538561</span></li>
+      <li style="--i:1"><strong>Owner-Led Projects</strong><span>Direct communication with Brian</span></li>
+      <li style="--i:2"><strong>Design + Construction</strong><span>One coordinated process</span></li>
+    </ul>
   </div>
 </section>
 
@@ -2726,15 +2745,39 @@ document.querySelector('.y-form')?.addEventListener('submit', (e) => e.preventDe
 
 
 (() => {
-  /* hero photo widens from the content width to full-bleed as the visitor scrolls */
-  const m = document.querySelector('.hz__media'); if (!m) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { m.style.setProperty('--p', 1); return; }
-  let tick = false;
-  const upd = () => { const r = m.getBoundingClientRect();
-    const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight * .9) - .3));
-    m.style.setProperty('--p', p.toFixed(3)); tick = false; };
+  /* hero photo v3: the stage pins under the header; the photo grows from the content column (cropped)
+     to the largest 3:2 box that fits the screen, so the whole photo is visible at the end */
+  const hz = document.querySelector('.hz'), m = hz && hz.querySelector('.hz__media'); if (!m) return;
+  const wide = matchMedia('(min-width: 64rem)'), still = matchMedia('(prefers-reduced-motion: reduce)');
+  const RATIO = 1.5;
+  let g = null, tick = false;
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = (t) => 1 - Math.pow(1 - t, 3);
+  const measure = () => {
+    hz.classList.remove('is-pin'); g = null;
+    if (!wide.matches || still.matches) return;
+    const cs = getComputedStyle(document.documentElement);
+    const bar = document.querySelector('.sh__bar'); const top = bar ? bar.offsetHeight : 80;
+    const stage = innerHeight - top;
+    const vw = document.documentElement.clientWidth;
+    const shell = document.querySelector('.hz .wrap').clientWidth - 2 * parseFloat(getComputedStyle(document.querySelector('.hz .wrap')).paddingLeft);
+    const endW = Math.min(vw, stage * RATIO), endH = endW / RATIO;
+    const startW = Math.min(shell, endW), startH = Math.min(endH, Math.max(startW / 2.4, stage * .55));
+    const run = Math.round(stage * .9);
+    g = { top, stage, startW, startH, endW, endH, run };
+    hz.style.setProperty('--hz-stage', stage + 'px'); hz.style.setProperty('--hz-run', run + 'px');
+    hz.classList.add('is-pin'); upd();
+  };
+  const upd = () => { tick = false; if (!g) return;
+    const r = m.getBoundingClientRect();
+    const from = innerHeight * .55, to = g.top - g.run;          /* starts as the photo rises, ends when the pin releases */
+    const p = ease(Math.min(1, Math.max(0, (from - r.top) / (from - to))));
+    hz.style.setProperty('--hz-w', lerp(g.startW, g.endW, p).toFixed(1) + 'px');
+    hz.style.setProperty('--hz-h', lerp(g.startH, g.endH, p).toFixed(1) + 'px');
+  };
   addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
-  addEventListener('resize', upd); upd();
+  addEventListener('resize', measure); wide.addEventListener('change', measure);
+  measure();
 })();
 
 (() => {
