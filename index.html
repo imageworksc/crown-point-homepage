@@ -2102,7 +2102,7 @@ body { line-height: 1.6; }
 .hz { overflow: clip !important; }   /* hidden would break the sticky stage */
 .hz__open { clip-path: none !important; margin-inline: auto; position: relative; }
 .hz__photo { height: auto !important; aspect-ratio: 3 / 2; width: 100%; }
-.hz__img { transform: none !important; background-position: center !important; }
+.hz__img { transform: none !important; background-position: center 70% !important; }   /* any trim comes off the ceiling, not the room */
 .hz__top { position: absolute !important; left: 0; right: 0; top: 0; padding: var(--space-6) var(--space-6) 0 !important; z-index: 1; }
 .hz__wrap { position: static !important; }
 .hz__bar { border-bottom: var(--hairline) solid var(--grey-200); }
@@ -2761,7 +2761,7 @@ document.querySelector('.y-form')?.addEventListener('submit', (e) => e.preventDe
     const stage = innerHeight - top;
     const vw = document.documentElement.clientWidth;
     const shell = document.querySelector('.hz .wrap').clientWidth - 2 * parseFloat(getComputedStyle(document.querySelector('.hz .wrap')).paddingLeft);
-    const endW = Math.min(vw, stage * RATIO), endH = endW / RATIO;
+    const endW = vw, endH = Math.min(vw / RATIO, stage);   /* edge to edge; trims a little when the screen is shorter than 3:2 */
     const startW = Math.min(shell, endW), startH = Math.min(endH, Math.max(startW / 2.4, stage * .55));
     const run = Math.round(stage * .9);
     g = { top, stage, startW, startH, endW, endH, run };
