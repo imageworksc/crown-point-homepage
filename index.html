@@ -60,7 +60,7 @@ html { font-size: 100%; }                                  /* 16px */
    same proportions on a 2560 (4K @150% / 5K @200%), a 3840 (4K @100%) and a
    5120 (5K @100%) display: 16px @1600 → 23px @2560 → 32px @3840 → 41px @5120.
    max() keeps a larger user default text size intact. */
-@media (min-width: 1600px) { html { font-size: max(100%, calc(0.7143vw + 0.2857rem)); } }
+@media (min-width: 1920px) { html { font-size: clamp(100%, calc(0.3125vw + 0.625rem), 1.125rem); } } /* 16px → 18px max at 2560 */
 
 :root {
   /* ------------------------------------------------------------------
