@@ -2763,14 +2763,15 @@ document.querySelector('.y-form')?.addEventListener('submit', (e) => e.preventDe
     const shell = document.querySelector('.hz .wrap').clientWidth - 2 * parseFloat(getComputedStyle(document.querySelector('.hz .wrap')).paddingLeft);
     const endW = vw, endH = Math.min(vw / RATIO, stage);   /* edge to edge; trims a little when the screen is shorter than 3:2 */
     const startW = Math.min(shell, endW), startH = Math.min(endH, Math.max(startW / 2.4, stage * .55));
-    const run = Math.round(stage * .9);
-    g = { top, stage, startW, startH, endW, endH, run };
+    const run = Math.round(stage * .25);   /* short pin: the photo is whole after about one screen of scrolling */
+    g = { top, stage, startW, startH, endW, endH, run, start: 0 };
+    hz.classList.add('is-pin'); g.start = m.getBoundingClientRect().top + scrollY - 40;   /* growth begins with the first bit of scroll */
     hz.style.setProperty('--hz-stage', stage + 'px'); hz.style.setProperty('--hz-run', run + 'px');
     hz.classList.add('is-pin'); upd();
   };
   const upd = () => { tick = false; if (!g) return;
     const r = m.getBoundingClientRect();
-    const from = innerHeight * .55, to = g.top - g.run;          /* starts as the photo rises, ends when the pin releases */
+    const from = g.start, to = g.top - g.run;          /* starts as the photo rises, ends when the pin releases */
     const p = ease(Math.min(1, Math.max(0, (from - r.top) / (from - to))));
     hz.style.setProperty('--hz-w', lerp(g.startW, g.endW, p).toFixed(1) + 'px');
     hz.style.setProperty('--hz-h', lerp(g.startH, g.endH, p).toFixed(1) + 'px');
