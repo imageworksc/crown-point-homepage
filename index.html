@@ -2111,6 +2111,12 @@ body { line-height: 1.6; }
   .hz.is-pin .hz__open { width: var(--hz-w); }
   .hz.is-pin .hz__photo { aspect-ratio: auto; height: var(--hz-h) !important; }
 }
+
+/* a little more vertical breathing room in every section (+25%) */
+:root { --band-y: clamp(4rem, 9vw, 7.5rem); --band-y-snug: clamp(2.5rem, 6vw, 5rem); }
+.p-faq.band { padding-block: clamp(4rem, 7vw, 5rem) !important; }
+.hz { padding-top: clamp(3.75rem, 7.5vw, 6.25rem) !important; }
+.sf__main { padding-block: clamp(4rem, 7vw, 6.25rem) !important; }
 </style>
 </head>
 <body>
