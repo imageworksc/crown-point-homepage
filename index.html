@@ -2104,10 +2104,7 @@ body { line-height: 1.6; }
 .hz__photo { height: auto !important; aspect-ratio: 3 / 2; width: 100%; }
 .hz__img { transform: none !important; background-position: center 70% !important; }   /* any trim comes off the ceiling, not the room */
 .hz__top { position: absolute !important; left: 0; right: 0; top: 0; padding: var(--space-6) var(--space-6) 0 !important; z-index: 1; }
-.hz__wrap { position: static !important; }
-.hz__bar { border-bottom: var(--hairline) solid var(--grey-200); }
-@media (min-width: 48rem) { .hz__bar li:first-child { padding-left: 0 !important; } }
-@media (max-width: 47.99rem) { .hz__wrap { padding-inline: 0 !important; } .hz__top, .hz__photo::after { display: none !important; } }
+@media (max-width: 47.99rem) { .hz__wrap { position: static !important; padding-inline: 0 !important; } .hz__top, .hz__photo::after { display: none !important; } }
 @media (min-width: 64rem) {
   .hz.is-pin .hz__media { height: calc(var(--hz-stage) + var(--hz-run)); }
   .hz.is-pin .hz__stage { position: sticky; top: var(--sh-bar); height: var(--hz-stage); display: flex; align-items: flex-start; }
@@ -2209,15 +2206,15 @@ body { line-height: 1.6; }
   <div class="hz__media">
     <div class="hz__stage">
       <div class="hz__open"><div class="hz__photo"><div class="hz__img" role="img" aria-label="Renovated sunroom with bi-fold windows opening onto the street"></div>
-        <div class="hz__top"><p class="hz__area">Serving St. Petersburg and homeowners throughout Pinellas County.</p></div></div></div>
-    </div>
-  </div>
+        <div class="hz__top"><p class="hz__area">Serving St. Petersburg and homeowners throughout Pinellas County.</p></div></div>
   <div class="wrap hz__wrap">
     <ul class="hz__bar" aria-label="Credentials">
       <li style="--i:0"><strong>Florida Certified General Contractor</strong><span>License #CGC1538561</span></li>
       <li style="--i:1"><strong>Owner-Led Projects</strong><span>Direct communication with Brian</span></li>
       <li style="--i:2"><strong>Design + Construction</strong><span>One coordinated process</span></li>
     </ul>
+  </div></div>
+    </div>
   </div>
 </section>
 
